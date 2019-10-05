@@ -17,25 +17,27 @@ namespace DADBF1
 
         public int id { get; set; }
 
-        public int? place1 { get; set; }
+        public int place1 { get; set; }
 
-        public int? place2 { get; set; }
+        public int place2 { get; set; }
 
-        public int? place3 { get; set; }
+        public int place3 { get; set; }
 
-        public int? place4 { get; set; }
+        public int place4 { get; set; }
 
-        public int? place5 { get; set; }
+        public int place5 { get; set; }
 
-        public int? place6 { get; set; }
+        public int place6 { get; set; }
 
-        public int? place7 { get; set; }
+        public int place7 { get; set; }
 
-        public int? place8 { get; set; }
+        public int place8 { get; set; }
 
-        public int? place9 { get; set; }
+        public int place9 { get; set; }
 
-        public int? place10 { get; set; }
+        public int place10 { get; set; }
+
+        public int fastlap { get; set; }
 
         public virtual driver driver { get; set; }
 
@@ -56,6 +58,8 @@ namespace DADBF1
         public virtual driver driver8 { get; set; }
 
         public virtual driver driver9 { get; set; }
+
+        public virtual driver driver10 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tournament> tournaments { get; set; }

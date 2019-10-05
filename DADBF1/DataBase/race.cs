@@ -18,12 +18,13 @@ namespace DADBF1
         public int id { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? race_day { get; set; }
+        public DateTime race_day { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string location { get; set; }
 
-        public int? laps { get; set; }
+        public int laps { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tournament> tournaments { get; set; }

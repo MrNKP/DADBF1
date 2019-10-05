@@ -66,16 +66,15 @@
       <DependentUpon>DataBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\driver.cs" />
-    <Compile Include="DriverAddForm.cs">
+    <Compile Include="DriverEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DriverAddForm.Designer.cs">
-      <DependentUpon>DriverAddForm.cs</DependentUpon>
+    <Compile Include="DriverEditForm.Designer.cs">
+      <DependentUpon>DriverEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\F1GrandPrixContext.cs" />
     <Compile Include="DataBase\race.cs" />
     <Compile Include="DataBase\result.cs" />
-    <Compile Include="DataBase\season.cs" />
     <Compile Include="StartFormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,8 +88,8 @@
     <EmbeddedResource Include="DataBaseForm.resx">
       <DependentUpon>DataBaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DriverAddForm.resx">
-      <DependentUpon>DriverAddForm.cs</DependentUpon>
+    <EmbeddedResource Include="DriverEditForm.resx">
+      <DependentUpon>DriverEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartFormLogin.resx">
       <DependentUpon>StartFormLogin.cs</DependentUpon>
@@ -105,8 +104,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\car.datasource" />
     <None Include="Properties\DataSources\driver.datasource" />
-    <None Include="Properties\DataSources\team.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

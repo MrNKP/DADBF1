@@ -10,16 +10,17 @@ namespace DADBF1
     {
         public int id { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string name { get; set; }
 
-        public int? driver1 { get; set; }
+        public int driver1 { get; set; }
 
-        public int? driver2 { get; set; }
+        public int driver2 { get; set; }
 
-        public int? car1 { get; set; }
+        public int car1 { get; set; }
 
-        public int? car2 { get; set; }
+        public int car2 { get; set; }
 
         public int? points { get; set; }
 

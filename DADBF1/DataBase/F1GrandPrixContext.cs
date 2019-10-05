@@ -16,7 +16,6 @@ namespace DADBF1
         public virtual DbSet<driver> drivers { get; set; }
         public virtual DbSet<race> races { get; set; }
         public virtual DbSet<result> results { get; set; }
-        public virtual DbSet<season> seasons { get; set; }
         public virtual DbSet<team> teams { get; set; }
         public virtual DbSet<tournament> tournaments { get; set; }
 
@@ -24,13 +23,15 @@ namespace DADBF1
         {
             modelBuilder.Entity<car>()
                 .HasMany(e => e.teams)
-                .WithOptional(e => e.car)
-                .HasForeignKey(e => e.car1);
+                .WithRequired(e => e.car)
+                .HasForeignKey(e => e.car1)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<car>()
                 .HasMany(e => e.teams1)
-                .WithOptional(e => e.car3)
-                .HasForeignKey(e => e.car2);
+                .WithRequired(e => e.car3)
+                .HasForeignKey(e => e.car2)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .Property(e => e.family_name)
@@ -41,64 +42,86 @@ namespace DADBF1
                 .IsUnicode(false);
 
             modelBuilder.Entity<driver>()
+                .Property(e => e.country)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<driver>()
                 .HasMany(e => e.results)
-                .WithOptional(e => e.driver)
-                .HasForeignKey(e => e.place1);
+                .WithRequired(e => e.driver)
+                .HasForeignKey(e => e.fastlap)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results1)
-                .WithOptional(e => e.driver1)
-                .HasForeignKey(e => e.place10);
+                .WithRequired(e => e.driver1)
+                .HasForeignKey(e => e.place1)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results2)
-                .WithOptional(e => e.driver2)
-                .HasForeignKey(e => e.place2);
+                .WithRequired(e => e.driver2)
+                .HasForeignKey(e => e.place10)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results3)
-                .WithOptional(e => e.driver3)
-                .HasForeignKey(e => e.place3);
+                .WithRequired(e => e.driver3)
+                .HasForeignKey(e => e.place2)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results4)
-                .WithOptional(e => e.driver4)
-                .HasForeignKey(e => e.place4);
+                .WithRequired(e => e.driver4)
+                .HasForeignKey(e => e.place3)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results5)
-                .WithOptional(e => e.driver5)
-                .HasForeignKey(e => e.place5);
+                .WithRequired(e => e.driver5)
+                .HasForeignKey(e => e.place4)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results6)
-                .WithOptional(e => e.driver6)
-                .HasForeignKey(e => e.place6);
+                .WithRequired(e => e.driver6)
+                .HasForeignKey(e => e.place5)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results7)
-                .WithOptional(e => e.driver7)
-                .HasForeignKey(e => e.place7);
+                .WithRequired(e => e.driver7)
+                .HasForeignKey(e => e.place6)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results8)
-                .WithOptional(e => e.driver8)
-                .HasForeignKey(e => e.place8);
+                .WithRequired(e => e.driver8)
+                .HasForeignKey(e => e.place7)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.results9)
-                .WithOptional(e => e.driver9)
-                .HasForeignKey(e => e.place9);
+                .WithRequired(e => e.driver9)
+                .HasForeignKey(e => e.place8)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<driver>()
+                .HasMany(e => e.results10)
+                .WithRequired(e => e.driver10)
+                .HasForeignKey(e => e.place9)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.teams)
-                .WithOptional(e => e.driver)
-                .HasForeignKey(e => e.driver1);
+                .WithRequired(e => e.driver)
+                .HasForeignKey(e => e.driver1)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<driver>()
                 .HasMany(e => e.teams1)
-                .WithOptional(e => e.driver3)
-                .HasForeignKey(e => e.driver2);
+                .WithRequired(e => e.driver3)
+                .HasForeignKey(e => e.driver2)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<race>()
                 .Property(e => e.location)
@@ -106,13 +129,15 @@ namespace DADBF1
 
             modelBuilder.Entity<race>()
                 .HasMany(e => e.tournaments)
-                .WithOptional(e => e.race1)
-                .HasForeignKey(e => e.race);
+                .WithRequired(e => e.race1)
+                .HasForeignKey(e => e.race)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<result>()
                 .HasMany(e => e.tournaments)
-                .WithOptional(e => e.result1)
-                .HasForeignKey(e => e.result);
+                .WithRequired(e => e.result1)
+                .HasForeignKey(e => e.result)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<team>()
                 .Property(e => e.name)

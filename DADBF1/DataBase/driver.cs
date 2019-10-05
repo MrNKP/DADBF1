@@ -22,21 +22,35 @@ namespace DADBF1
             results7 = new HashSet<result>();
             results8 = new HashSet<result>();
             results9 = new HashSet<result>();
+            results10 = new HashSet<result>();
             teams = new HashSet<team>();
             teams1 = new HashSet<team>();
         }
 
         public int id { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string family_name { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string name { get; set; }
 
-        public int? experience { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string country { get; set; }
 
-        public int? trophies { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime birth { get; set; }
+
+        public int podiums { get; set; }
+
+        public int experience { get; set; }
+
+        public int trophies { get; set; }
+
+        public int number { get; set; }
 
         public int? points { get; set; }
 
@@ -69,6 +83,9 @@ namespace DADBF1
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<result> results9 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<result> results10 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<team> teams { get; set; }

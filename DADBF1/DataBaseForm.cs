@@ -36,16 +36,50 @@ namespace DADBF1
 
         private void driversAddBtn_Click(object sender, EventArgs e)
         {
-            using (DriverAddForm frm = new DriverAddForm())
+            using (DriverEditForm frm = new DriverEditForm())
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     // Add driver
-                    if (dbm.CreateDriver(frm.familyNameTextBox.Text, frm.nameTextBox.Text, Convert.ToInt32(frm.experienceTextBox.Text), Convert.ToInt32(frm.trophiesTextBox.Text), Convert.ToInt32(frm.pointsTextBox.Text)) == null)
-                        MessageBox.Show("Error Adding");
+                    if (dbm.CreateDriver(frm.familyNameTextBox.Text, frm.nameTextBox.Text, frm.countryTextBox.Text, Convert.ToDateTime(frm.birthTextBox.Text), Convert.ToInt32(frm.podiumsTextBox.Text), Convert.ToInt32(frm.experienceTextBox.Text), Convert.ToInt32(frm.trophiesTextBox.Text), Convert.ToInt32(frm.numberTextBox.Text), Convert.ToInt32(frm.pointsTextBox.Text)) == null)
+                        MessageBox.Show("Error", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     // Update table
                     driversDataGridView.DataSource = context.drivers.ToList();
                 }
+            }
+        }
+
+        private void carsShowBtn_Click(object sender, EventArgs e)
+        {
+            carsDataGridView.DataSource = context.cars.ToList();
+        }
+
+        private void driversDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //23.24
+            int id = Convert.ToInt32(driversDataGridView.CurrentRow.Cells[0].Value);
+            if (e.ColumnIndex == 23)
+            {
+                //Edit
+                driver locd = context.drivers.Find(id);
+                using (DriverEditForm frm = new DriverEditForm(locd))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        if (dbm.EditDriver(id, frm.familyNameTextBox.Text, frm.nameTextBox.Text, frm.countryTextBox.Text, Convert.ToDateTime(frm.birthTextBox.Text), Convert.ToInt32(frm.podiumsTextBox.Text), Convert.ToInt32(frm.experienceTextBox.Text), Convert.ToInt32(frm.trophiesTextBox.Text), Convert.ToInt32(frm.numberTextBox.Text), Convert.ToInt32(frm.pointsTextBox.Text)))
+                            MessageBox.Show("OK", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else MessageBox.Show("Error", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        driversDataGridView.DataSource = context.drivers.ToList();
+                    }
+                }
+            }
+            if (e.ColumnIndex == 24)
+            {
+                //Delete
+                if (dbm.DeleteDriver(id))
+                    MessageBox.Show("OK", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else MessageBox.Show("Error", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                driversDataGridView.DataSource = context.drivers.ToList();
             }
         }
     }

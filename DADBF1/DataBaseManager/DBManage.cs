@@ -14,22 +14,63 @@ namespace DADBF1.DataBaseManager
             db = context;
         }
         // ===== Driver =====
-        public driver CreateDriver (String dfamilyName, String dname, int dexp, int dtr, int dpts)
+        public driver CreateDriver (string fn, string n, string c, DateTime b, int p, int e, int t, int num, int pts)
         {
-            driver driv = db.drivers.Where(p => (p.family_name == dfamilyName) && (p.name == dname) && (p.experience == dexp) && (p.trophies == dtr) && (p.points == dpts)).FirstOrDefault();
-            if (driv != null) return null;
+            driver d = db.drivers.Where(p1 => (p1.family_name == fn) && (p1.name == n) && (p1.country == c) && (p1.birth == b) && (p1.podiums == p) && (p1.experience == e) && (p1.trophies == t) && (p1.number == num) && (p1.points == pts)).FirstOrDefault();
+            if (d != null) return null;
             else
             {
-                driver drv = new DADBF1.driver();
-                drv.family_name = dfamilyName;
-                drv.name = dname;
-                drv.experience = dexp;
-                drv.trophies = dtr;
-                drv.points = dpts;
-                db.drivers.Add(drv);
+                d = new driver();
+                d.family_name = fn;
+                d.name = n;
+                d.country = c;
+                d.birth = b;
+                d.podiums = p;
+                d.experience = e;
+                d.trophies = t;
+                d.number = num;
+                d.points = pts;
+                db.drivers.Add(d);
                 db.SaveChanges();
-                return drv;
+                return d;
             }
+        }
+        public bool EditDriver(int id, string fn, string n, string c, DateTime b, int p, int e, int t, int num, int pts)
+        {
+            driver d = db.drivers.Find(id);
+            if (d != null)
+            {
+                d.family_name = fn;
+                d.name = n;
+                d.country = c;
+                d.birth = b;
+                d.podiums = p;
+                d.experience = e;
+                d.trophies = t;
+                d.number = num;
+                d.points = pts;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        public bool DeleteDriver(int id)
+        {
+            driver d = db.drivers.Find(id);
+            if (d != null)
+            {
+                db.drivers.Remove(d);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
