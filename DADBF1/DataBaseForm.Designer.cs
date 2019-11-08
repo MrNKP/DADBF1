@@ -35,10 +35,11 @@
             this.teamsAddBtn = new System.Windows.Forms.Button();
             this.teamsShowBtn = new System.Windows.Forms.Button();
             this.teamsDataGridView = new System.Windows.Forms.DataGridView();
-            this.editTeam = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deleteTeam = new System.Windows.Forms.DataGridViewButtonColumn();
             this.driversPage = new System.Windows.Forms.TabPage();
             this.driversDataGridView = new System.Windows.Forms.DataGridView();
+            this.driverInfo = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.driverEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.driverDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.driversAddBtn = new System.Windows.Forms.Button();
             this.driversShowBtn = new System.Windows.Forms.Button();
             this.carsPage = new System.Windows.Forms.TabPage();
@@ -51,13 +52,15 @@
             this.tournamentAddBtn = new System.Windows.Forms.Button();
             this.tournamentShowBtn = new System.Windows.Forms.Button();
             this.tournamentDataGridView = new System.Windows.Forms.DataGridView();
+            this.raceInfo = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deleteRace = new System.Windows.Forms.DataGridViewButtonColumn();
             this.loggedLbl = new System.Windows.Forms.Label();
             this.loggedUsernameLbl = new System.Windows.Forms.Label();
             this.seasonLbl = new System.Windows.Forms.Label();
             this.seasonComboBox = new System.Windows.Forms.ComboBox();
-            this.driverInfo = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.driverEdit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.driverDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.infoTeam = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.editTeam = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deleteTeam = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.driver1SurNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,11 +103,6 @@
             this.teamsDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teams1DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.carBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.extTournamentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.extTournamentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.driverBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,9 +113,11 @@
             this.thirdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fastLapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.seasonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.raceInfo = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.editRace = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deleteRace = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.extTournamentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.extTournamentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.driverBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.driverBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataBaseTabs.SuspendLayout();
             this.teamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teamsDataGridView)).BeginInit();
@@ -170,6 +170,7 @@
             this.teamsAddBtn.TabIndex = 2;
             this.teamsAddBtn.Text = "Add";
             this.teamsAddBtn.UseVisualStyleBackColor = true;
+            this.teamsAddBtn.Click += new System.EventHandler(this.teamsAddBtn_Click);
             // 
             // teamsShowBtn
             // 
@@ -195,6 +196,7 @@
             this.car1PowerDataGridViewTextBoxColumn,
             this.car2PowerDataGridViewTextBoxColumn,
             this.pointsDataGridViewTextBoxColumn1,
+            this.infoTeam,
             this.editTeam,
             this.deleteTeam});
             this.teamsDataGridView.DataSource = this.extTeamBindingSource;
@@ -204,22 +206,7 @@
             this.teamsDataGridView.RowTemplate.Height = 24;
             this.teamsDataGridView.Size = new System.Drawing.Size(1226, 321);
             this.teamsDataGridView.TabIndex = 0;
-            // 
-            // editTeam
-            // 
-            this.editTeam.HeaderText = "";
-            this.editTeam.Name = "editTeam";
-            this.editTeam.ReadOnly = true;
-            this.editTeam.Text = "Edit";
-            this.editTeam.UseColumnTextForButtonValue = true;
-            // 
-            // deleteTeam
-            // 
-            this.deleteTeam.HeaderText = "";
-            this.deleteTeam.Name = "deleteTeam";
-            this.deleteTeam.ReadOnly = true;
-            this.deleteTeam.Text = "Delete";
-            this.deleteTeam.UseColumnTextForButtonValue = true;
+            this.teamsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.teamsDataGridView_CellContentClick);
             // 
             // driversPage
             // 
@@ -274,6 +261,30 @@
             this.driversDataGridView.TabIndex = 0;
             this.driversDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.driversDataGridView_CellContentClick);
             // 
+            // driverInfo
+            // 
+            this.driverInfo.HeaderText = "";
+            this.driverInfo.Name = "driverInfo";
+            this.driverInfo.ReadOnly = true;
+            this.driverInfo.Text = "Info";
+            this.driverInfo.UseColumnTextForButtonValue = true;
+            // 
+            // driverEdit
+            // 
+            this.driverEdit.HeaderText = "";
+            this.driverEdit.Name = "driverEdit";
+            this.driverEdit.ReadOnly = true;
+            this.driverEdit.Text = "Edit";
+            this.driverEdit.UseColumnTextForButtonValue = true;
+            // 
+            // driverDelete
+            // 
+            this.driverDelete.HeaderText = "";
+            this.driverDelete.Name = "driverDelete";
+            this.driverDelete.ReadOnly = true;
+            this.driverDelete.Text = "Delete";
+            this.driverDelete.UseColumnTextForButtonValue = true;
+            // 
             // driversAddBtn
             // 
             this.driversAddBtn.Location = new System.Drawing.Point(1239, 59);
@@ -315,6 +326,7 @@
             this.carsAddBtn.TabIndex = 2;
             this.carsAddBtn.Text = "Add";
             this.carsAddBtn.UseVisualStyleBackColor = true;
+            this.carsAddBtn.Click += new System.EventHandler(this.carsAddBtn_Click);
             // 
             // carsShowBtn
             // 
@@ -347,6 +359,7 @@
             this.carsDataGridView.RowTemplate.Height = 24;
             this.carsDataGridView.Size = new System.Drawing.Size(1226, 320);
             this.carsDataGridView.TabIndex = 0;
+            this.carsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.carsDataGridView_CellContentClick);
             // 
             // carEdit
             // 
@@ -385,6 +398,7 @@
             this.tournamentAddBtn.TabIndex = 2;
             this.tournamentAddBtn.Text = "Add";
             this.tournamentAddBtn.UseVisualStyleBackColor = true;
+            this.tournamentAddBtn.Click += new System.EventHandler(this.tournamentAddBtn_Click);
             // 
             // tournamentShowBtn
             // 
@@ -412,7 +426,6 @@
             this.fastLapDataGridViewTextBoxColumn,
             this.seasonDataGridViewTextBoxColumn,
             this.raceInfo,
-            this.editRace,
             this.deleteRace});
             this.tournamentDataGridView.DataSource = this.extTournamentBindingSource1;
             this.tournamentDataGridView.Location = new System.Drawing.Point(7, 7);
@@ -421,6 +434,20 @@
             this.tournamentDataGridView.Size = new System.Drawing.Size(1226, 320);
             this.tournamentDataGridView.TabIndex = 0;
             this.tournamentDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tournamentDataGridView_CellContentClick);
+            // 
+            // raceInfo
+            // 
+            this.raceInfo.HeaderText = "";
+            this.raceInfo.Name = "raceInfo";
+            this.raceInfo.Text = "Info";
+            this.raceInfo.UseColumnTextForButtonValue = true;
+            // 
+            // deleteRace
+            // 
+            this.deleteRace.HeaderText = "";
+            this.deleteRace.Name = "deleteRace";
+            this.deleteRace.Text = "Delete";
+            this.deleteRace.UseColumnTextForButtonValue = true;
             // 
             // loggedLbl
             // 
@@ -457,29 +484,29 @@
             this.seasonComboBox.Size = new System.Drawing.Size(1294, 24);
             this.seasonComboBox.TabIndex = 4;
             // 
-            // driverInfo
+            // infoTeam
             // 
-            this.driverInfo.HeaderText = "";
-            this.driverInfo.Name = "driverInfo";
-            this.driverInfo.ReadOnly = true;
-            this.driverInfo.Text = "Info";
-            this.driverInfo.UseColumnTextForButtonValue = true;
+            this.infoTeam.HeaderText = "";
+            this.infoTeam.Name = "infoTeam";
+            this.infoTeam.ReadOnly = true;
+            this.infoTeam.Text = "Info";
+            this.infoTeam.UseColumnTextForButtonValue = true;
             // 
-            // driverEdit
+            // editTeam
             // 
-            this.driverEdit.HeaderText = "";
-            this.driverEdit.Name = "driverEdit";
-            this.driverEdit.ReadOnly = true;
-            this.driverEdit.Text = "Edit";
-            this.driverEdit.UseColumnTextForButtonValue = true;
+            this.editTeam.HeaderText = "";
+            this.editTeam.Name = "editTeam";
+            this.editTeam.ReadOnly = true;
+            this.editTeam.Text = "Edit";
+            this.editTeam.UseColumnTextForButtonValue = true;
             // 
-            // driverDelete
+            // deleteTeam
             // 
-            this.driverDelete.HeaderText = "";
-            this.driverDelete.Name = "driverDelete";
-            this.driverDelete.ReadOnly = true;
-            this.driverDelete.Text = "Delete";
-            this.driverDelete.UseColumnTextForButtonValue = true;
+            this.deleteTeam.HeaderText = "";
+            this.deleteTeam.Name = "deleteTeam";
+            this.deleteTeam.ReadOnly = true;
+            this.deleteTeam.Text = "Delete";
+            this.deleteTeam.UseColumnTextForButtonValue = true;
             // 
             // idDataGridViewTextBoxColumn2
             // 
@@ -784,26 +811,6 @@
             // 
             this.carBindingSource.DataSource = typeof(DADBF1.car);
             // 
-            // extTournamentBindingSource1
-            // 
-            this.extTournamentBindingSource1.DataSource = typeof(DADBF1.Views.ExtTournament);
-            // 
-            // extTournamentBindingSource
-            // 
-            this.extTournamentBindingSource.DataSource = typeof(DADBF1.Views.ExtTournament);
-            // 
-            // driverBindingSource
-            // 
-            this.driverBindingSource.DataSource = typeof(DADBF1.driver);
-            // 
-            // teamBindingSource
-            // 
-            this.teamBindingSource.DataSource = typeof(DADBF1.team);
-            // 
-            // driverBindingSource1
-            // 
-            this.driverBindingSource1.DataSource = typeof(DADBF1.driver);
-            // 
             // idDataGridViewTextBoxColumn3
             // 
             this.idDataGridViewTextBoxColumn3.DataPropertyName = "id";
@@ -865,26 +872,25 @@
             this.seasonDataGridViewTextBoxColumn.HeaderText = "season";
             this.seasonDataGridViewTextBoxColumn.Name = "seasonDataGridViewTextBoxColumn";
             // 
-            // raceInfo
+            // extTournamentBindingSource1
             // 
-            this.raceInfo.HeaderText = "";
-            this.raceInfo.Name = "raceInfo";
-            this.raceInfo.Text = "Info";
-            this.raceInfo.UseColumnTextForButtonValue = true;
+            this.extTournamentBindingSource1.DataSource = typeof(DADBF1.Views.ExtTournament);
             // 
-            // editRace
+            // extTournamentBindingSource
             // 
-            this.editRace.HeaderText = "";
-            this.editRace.Name = "editRace";
-            this.editRace.Text = "Edit";
-            this.editRace.UseColumnTextForButtonValue = true;
+            this.extTournamentBindingSource.DataSource = typeof(DADBF1.Views.ExtTournament);
             // 
-            // deleteRace
+            // driverBindingSource
             // 
-            this.deleteRace.HeaderText = "";
-            this.deleteRace.Name = "deleteRace";
-            this.deleteRace.Text = "Delete";
-            this.deleteRace.UseColumnTextForButtonValue = true;
+            this.driverBindingSource.DataSource = typeof(DADBF1.driver);
+            // 
+            // teamBindingSource
+            // 
+            this.teamBindingSource.DataSource = typeof(DADBF1.team);
+            // 
+            // driverBindingSource1
+            // 
+            this.driverBindingSource1.DataSource = typeof(DADBF1.driver);
             // 
             // DataBaseForm
             // 
@@ -958,17 +964,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn carEdit;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.BindingSource extTeamBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn driver1SurNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn driver1NameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn driver2SurNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn driver2NameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car1PowerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car2PowerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pointsDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewButtonColumn editTeam;
-        private System.Windows.Forms.DataGridViewButtonColumn deleteTeam;
         private System.Windows.Forms.Button tournamentAddBtn;
         private System.Windows.Forms.Button tournamentShowBtn;
         private System.Windows.Forms.DataGridView tournamentDataGridView;
@@ -1011,7 +1006,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fastLapDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn seasonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn raceInfo;
-        private System.Windows.Forms.DataGridViewButtonColumn editRace;
         private System.Windows.Forms.DataGridViewButtonColumn deleteRace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn driver1SurNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn driver1NameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn driver2SurNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn driver2NameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car1PowerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car2PowerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pointsDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn infoTeam;
+        private System.Windows.Forms.DataGridViewButtonColumn editTeam;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteTeam;
     }
 }

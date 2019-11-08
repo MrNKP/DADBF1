@@ -25,14 +25,42 @@ namespace DADBF1
             raceWinnerLbl.Text = t.result1.driver1.name + ' ' + t.result1.driver1.family_name;
             raceSecondLbl.Text = t.result1.driver3.name + ' ' + t.result1.driver3.family_name;
             raceThirdLbl.Text = t.result1.driver4.name + ' ' + t.result1.driver4.family_name;
-            trackPictureBox.Image = Image.FromFile("D:/Visual Studio Projects/DADBF1/DADBF1/Photos/" + raceLocationLbl.Text + ".png");
-            trackPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            winnerPictureBox.Image = Image.FromFile("D:/Visual Studio Projects/DADBF1/DADBF1/Photos/" + t.result1.driver1.family_name + ".jpg");
-            winnerPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            secondPictureBox.Image = Image.FromFile("D:/Visual Studio Projects/DADBF1/DADBF1/Photos/" + t.result1.driver3.family_name + ".jpg");
-            secondPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            thirdPictureBox.Image = Image.FromFile("D:/Visual Studio Projects/DADBF1/DADBF1/Photos/" + t.result1.driver4.family_name + ".jpg");
-            thirdPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            try
+            {
+                trackPictureBox.Image = Image.FromFile("../../Photos/" + raceLocationLbl.Text + ".png");
+                trackPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("No Track Sceme", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            try
+            {
+                winnerPictureBox.Image = Image.FromFile("../../Photos/" + t.result1.driver1.family_name + ".jpg");
+                winnerPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("No Winner Photo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            try
+            {
+                secondPictureBox.Image = Image.FromFile("../../Photos/" + t.result1.driver3.family_name + ".jpg");
+                secondPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("No Second Place Photo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            try
+            {
+                thirdPictureBox.Image = Image.FromFile("../../Photos/" + t.result1.driver4.family_name + ".jpg");
+                thirdPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("No Third Place Photo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             this.Text = "Race --- " + raceLocationLbl.Text;
         }
     }

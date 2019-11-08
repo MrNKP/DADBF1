@@ -24,5 +24,18 @@ namespace DADBF1
             dbsf.ShowDialog();
             this.Show();
         }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            if (usernameTextBox.Text == "Admin" && passwordTextBox.Text == "1234")
+            {
+                DataBaseForm dbsf = new DataBaseForm("Admin");
+                this.Hide();
+                dbsf.ShowDialog();
+                this.Show();
+            }
+            else
+                MessageBox.Show("Invalid Username/PassWord", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

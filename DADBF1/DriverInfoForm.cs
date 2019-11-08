@@ -27,9 +27,17 @@ namespace DADBF1
             driverExperience.Text = d.experience.ToString();
             driverTrophies.Text = d.trophies.ToString();
             driverNumber.Text = d.number.ToString();
-            driverPhotoPictureBox.Image = Image.FromFile("D:/Visual Studio Projects/DADBF1/DADBF1/Photos/" + driverFamilyName.Text + ".jpg");
-            //driverPhotoPictureBox.ImageLocation = "./Photos/" + driverFamilyName.Text + ".jpg";
-            driverPhotoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            string path = System.IO.Directory.GetCurrentDirectory();
+            try
+            {
+                driverPhotoPictureBox.Image = Image.FromFile("../../Photos/" + driverFamilyName.Text + ".jpg");
+                //driverPhotoPictureBox.ImageLocation = "./Photos/" + driverFamilyName.Text + ".jpg";
+                driverPhotoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("No Photo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             this.Text = "Driver --- " + driverName.Text + " " + driverFamilyName.Text;
         }
     }
